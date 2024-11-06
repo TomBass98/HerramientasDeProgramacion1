@@ -1,0 +1,10 @@
+D:\HerramientasDeProgramacion1\finalHerramientas1\bin\Debug\finalHerramientas1.exe.config
+D:\HerramientasDeProgramacion1\finalHerramientas1\bin\Debug\finalHerramientas1.exe
+D:\HerramientasDeProgramacion1\finalHerramientas1\bin\Debug\finalHerramientas1.pdb
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.csproj.AssemblyReference.cache
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.Form1.resources
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.Properties.Resources.resources
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.csproj.GenerateResource.cache
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.csproj.CoreCompileInputs.cache
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.exe
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.pdb

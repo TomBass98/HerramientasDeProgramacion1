@@ -28,13 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.boton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // boton
+            // 
+            this.boton.Font = new System.Drawing.Font("Microsoft Yi Baiti", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton.Location = new System.Drawing.Point(327, 170);
+            this.boton.Name = "boton";
+            this.boton.Size = new System.Drawing.Size(207, 150);
+            this.boton.TabIndex = 0;
+            this.boton.Text = "button1";
+            this.boton.UseVisualStyleBackColor = true;
+            this.boton.Click += new System.EventHandler(this.boton_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(821, 495);
+            this.Controls.Add(this.boton);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button boton;
     }
 }
 
