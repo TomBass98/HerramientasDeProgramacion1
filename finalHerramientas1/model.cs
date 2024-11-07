@@ -77,35 +77,23 @@ namespace finalHerramientas1
     {
         private string nombre;
         private int cc;
-        private roll roll;
+        private string roll;
+        private int cantMaxPrestamo;
 
-        public persona(string nombre, int cc, roll roll)
+        public persona(string nombre, int cc, string roll, int cantMaxPrestamo)
         {
             this.Nombre = nombre;
             this.Cc = cc;
             this.Roll = roll;
-            
+            this.CantMaxPrestamo = cantMaxPrestamo;
         }
 
         public string Nombre { get => nombre; set => nombre = value; }
         public int Cc { get => cc; set => cc = value; }
-        public roll Roll { get => roll; set => roll = value; }
+        public string Roll { get => roll; set => roll = value; }
+        public int CantMaxPrestamo { get => cantMaxPrestamo; set => cantMaxPrestamo = value; }
     }
-    
-    public class roll
-    {
-        private string tipoRoll;
-        private int maxPrestamos;
 
-        public roll(string tipoRoll, int maxPrestamos)
-        {
-            this.TipoRoll = tipoRoll;
-            this.MaxPrestamos = maxPrestamos;
-        }
-
-        public string TipoRoll { get => tipoRoll; set => tipoRoll = value; }
-        public int MaxPrestamos { get => maxPrestamos; set => maxPrestamos = value; }
-    }
 
 
 

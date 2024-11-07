@@ -8,7 +8,10 @@ namespace finalHerramientas1
 {
     internal class controlador
     {
-        public controlador() { }
+        public controlador() { 
+        
+               
+        }
 
 
     }
