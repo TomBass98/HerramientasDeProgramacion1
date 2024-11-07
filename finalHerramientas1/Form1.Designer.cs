@@ -34,9 +34,9 @@
             // boton
             // 
             this.boton.Font = new System.Drawing.Font("Microsoft Yi Baiti", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.boton.Location = new System.Drawing.Point(327, 170);
+            this.boton.Location = new System.Drawing.Point(301, 367);
             this.boton.Name = "boton";
-            this.boton.Size = new System.Drawing.Size(207, 150);
+            this.boton.Size = new System.Drawing.Size(170, 54);
             this.boton.TabIndex = 0;
             this.boton.Text = "button1";
             this.boton.UseVisualStyleBackColor = true;

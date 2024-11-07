@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|D:\\HerramientasDeProgramacion1\\finalHerramientas1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|d:\\herramientasdeprogramacion1\\finalherramientas1\\conexionsqlcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:conexionsqlcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|D:\\HerramientasDeProgramacion1\\finalHerramientas1\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|D:\\HerramientasDeProgramacion1\\finalHerramientas1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|d:\\herramientasdeprogramacion1\\finalherramientas1\\model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:model.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|d:\\herramientasdeprogramacion1\\finalherramientas1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|D:\\HerramientasDeProgramacion1\\finalHerramientas1\\conexionsqlcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6813A995-74E4-4EC6-8303-97D4C909C82C}|finalHerramientas1.csproj|solutionrelative:conexionsqlcs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Dise\u00F1o]",
               "DocumentMoniker": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -38,43 +38,45 @@
               "RelativeToolTip": "Form1.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-06T05:06:49.176Z",
+              "IsPinned": true,
               "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAcwBoAAAAJAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAADwvyAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-06T07:45:24.364Z",
+              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "model.cs",
               "DocumentMoniker": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\model.cs",
               "RelativeDocumentMoniker": "model.cs",
               "ToolTip": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\model.cs",
               "RelativeToolTip": "model.cs",
-              "ViewState": "AQIAAEgAAAAAAAAAAAAowGQAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFwAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-06T07:23:17.517Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "conexionSQLcs.cs",
               "DocumentMoniker": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\conexionSQLcs.cs",
               "RelativeDocumentMoniker": "conexionSQLcs.cs",
               "ToolTip": "D:\\HerramientasDeProgramacion1\\finalHerramientas1\\conexionSQLcs.cs",
               "RelativeToolTip": "conexionSQLcs.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAowAsAAAB5AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAB5AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-07T02:19:20.161Z",
               "EditorCaption": ""
