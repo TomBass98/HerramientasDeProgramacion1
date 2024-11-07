@@ -50,7 +50,7 @@ namespace finalHerramientas1
     public class material
     {
         private int iSBN;
-        private string nombre;
+        private string nombre;  
         private DateTime fechaCreacion;
         private int cantidadReg;
         private int cantidadAct;
