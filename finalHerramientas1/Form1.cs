@@ -33,9 +33,11 @@ namespace finalHerramientas1
 
         private void boton_Click(object sender, EventArgs e)
         {
-            biblioteca.agregarMaterial(new material(1234, "Libro Ejemplo", DateTime.Now, 10, 5));
             conexion.AbrirConexion();
             conexion.CerrarConexion();
+            
+            biblioteca.agregarMaterial(new material(1234, "Libro Ejemplo", DateTime.Now, 10, 5));
+
         }
         
 

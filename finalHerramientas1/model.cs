@@ -10,10 +10,10 @@ namespace finalHerramientas1
     
     public class biblioteca
     {
-        public List<material> catalogo;
+        private List<material> catalogo;
         private List<persona> registroPersonas;
         private List<movimiento> movimientos;
-
+        
         public biblioteca(List<material> catalogo, List<persona> registroPersonas, List<movimiento> movimientos)
         {
             this.Catalogo = catalogo;
@@ -27,7 +27,12 @@ namespace finalHerramientas1
 
         public void agregarMaterial(material nuevoMaterial)
         {
-            catalogo.Add(nuevoMaterial);
+            if (nuevoMaterial == null)
+            {
+                catalogo.Add(nuevoMaterial);
+                MessageBox.Show("Guardado con exito");
+            }
+ 
         }
     }
 
@@ -78,8 +83,6 @@ namespace finalHerramientas1
 
         
     }
-
-
 
     public class persona
     {
