@@ -16,7 +16,7 @@ namespace finalHerramientas1
         public Form1()
         {
             InitializeComponent();
-            this.biblioteca = new biblioteca(new material[20]);
+            this.biblioteca = new biblioteca(new material[20], new persona[20], new movimiento[20]);
         }
 
         private void Form1_Load(object sender, EventArgs e)

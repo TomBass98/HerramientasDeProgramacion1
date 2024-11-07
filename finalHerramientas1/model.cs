@@ -13,6 +13,17 @@ namespace finalHerramientas1
         private material [] catalogo;
         private persona [] registroPersonas;
         private movimiento[] movimientos;
+
+        public biblioteca(material[] catalogo, persona[] registroPersonas, movimiento[] movimientos)
+        {
+            this.Catalogo = catalogo;
+            this.RegistroPersonas = registroPersonas;
+            this.Movimientos = movimientos;
+        }
+
+        public material[] Catalogo { get => catalogo; set => catalogo = value; }
+        public persona[] RegistroPersonas { get => registroPersonas; set => registroPersonas = value; }
+        public movimiento[] Movimientos { get => movimientos; set => movimientos = value; }
     }
 
     public class movimiento
