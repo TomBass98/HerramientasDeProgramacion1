@@ -81,5 +81,33 @@ namespace finalHerramientas1
             }
             return dataReader; 
         }
+
+        public SqlDataReader EjecutarConsultaReader(string query)
+        {
+            SqlConnection conexion = new SqlConnection("tu_cadena_de_conexion"); // Asegúrate de usar la cadena de conexión correcta
+            SqlDataReader reader = null;
+
+            try
+            {
+                conexion.Open(); // Abrir la conexión
+
+                // Crear el comando con la consulta SQL
+                SqlCommand comando = new SqlCommand(query, conexion);
+
+                // Ejecutar la consulta y devolver el SqlDataReader
+                reader = comando.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                // Si ocurre un error, lanzar una excepción
+                throw new Exception($"Error al ejecutar la consulta: {ex.Message}");
+            }
+
+            return reader; // El reader queda abierto para que se use en el código de la consulta
+        }
+
+
     }
+
+
 }

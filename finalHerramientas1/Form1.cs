@@ -13,17 +13,15 @@ namespace finalHerramientas1
 {
     public partial class Form1 : Form
     {
+       
         private biblioteca biblioteca;
         private conexionSQLcs conexion;
 
         public Form1()
         {
-            List<material> catalogo = new List<material>();
-            List<persona> registroPersonas = new List<persona>();
-            List<movimiento> movimientos = new List<movimiento>();
-
+            
             InitializeComponent();
-            this.biblioteca = new biblioteca(catalogo, registroPersonas, movimientos);
+            this.biblioteca = new biblioteca(new List<material>(), new List<persona>(), new List<movimiento>());
             this.conexion = new conexionSQLcs();
         }
 
@@ -36,10 +34,20 @@ namespace finalHerramientas1
             conexion.AbrirConexion();
             conexion.CerrarConexion();
             
-            biblioteca.agregarMaterial(new material(1234, "Libro Ejemplo", DateTime.Now, 10, 5));
+           
 
         }
-        
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Personas personas = new Personas();
+            personas.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
