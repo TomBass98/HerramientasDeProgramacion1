@@ -17,7 +17,7 @@ namespace finalHerramientas1
         public Personas()
         {
             InitializeComponent();
-            this.biblioteca = new biblioteca(new List<material>(), new List<persona>(), new List<movimiento>());
+            this.biblioteca = new biblioteca(new List<biblioteca.material>(), new List<biblioteca.persona>(), new List<biblioteca.movimiento> ());
             this.conexion = new conexionSQLcs();
 
         }
@@ -45,7 +45,7 @@ namespace finalHerramientas1
             }
 
 
-            biblioteca.registrarPersona(new persona(nombre, cc, rol, cantMaxPrest));
+            biblioteca.registrarPersona(new biblioteca.persona (nombre, cc, rol, cantMaxPrest));
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -60,6 +60,16 @@ namespace finalHerramientas1
             int cc = int.Parse(txtCC.Text);
            
             biblioteca.eliminarPersona(cc);
+        }
+
+        private void Personas_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

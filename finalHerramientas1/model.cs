@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace finalHerramientas1
 {
-    
+
     public class biblioteca
     {
         private List<material> catalogo;
@@ -27,7 +27,7 @@ namespace finalHerramientas1
         public List<persona> RegistroPersonas { get => registroPersonas; set => registroPersonas = value; }
         public List<movimiento> Movimientos { get => movimientos; set => movimientos = value; }
 
-        
+
         public void registrarMaterial(material nuevoMaterial)
         {
             if (catalogo.Exists(m => m.ISBN == nuevoMaterial.ISBN))
@@ -39,13 +39,170 @@ namespace finalHerramientas1
             catalogo.Add(nuevoMaterial);
 
             // Guardar en la base de datos
-            string query = $"INSERT INTO Material (ISBN, Nombre, FechaRegistro, CantidadReg, CantidadAct) " +
-                           $"VALUES ({nuevoMaterial.ISBN}, '{nuevoMaterial.Nombre}', '{nuevoMaterial.FechaCreacion}', {nuevoMaterial.CantidadReg}, {nuevoMaterial.CantidadAct})";
+            string query = $"INSERT INTO material (iSBN, Nombre,  CantidadRegistrada, CantidadActual) " +
+                           $"VALUES ({nuevoMaterial.ISBN}, '{nuevoMaterial.Nombre}', {nuevoMaterial.CantidadReg}, {nuevoMaterial.CantidadAct})";
 
             conexion.EjecutarConsulta(query);
 
             MessageBox.Show("Material registrado con éxito.");
         }
+        public void prestamo(int isbn)
+        {
+            // Verificar que el ISBN sea válido
+            if (isbn <= 0)
+            {
+                MessageBox.Show("Por favor, ingrese un ISBN válido.");
+                return;
+            }
+
+
+            string queryVerificar = "SELECT COUNT(*) FROM material WHERE iSBN = @isbn";
+
+      
+            string queryActualizar = "UPDATE material SET CantidadActual = CantidadActual - 1 WHERE iSBN = @isbn AND CantidadActual > 0";
+
+            try
+            {
+
+
+                // Verificar si el material existe
+                using (SqlCommand comandoVerificar = new SqlCommand(queryVerificar, conexion.ObtenerConexion()))
+                {
+                    comandoVerificar.Parameters.AddWithValue("@isbn", isbn);
+
+                    conexion.AbrirConexion();
+                    int cantidad = (int)comandoVerificar.ExecuteScalar(); // Devuelve la cantidad de registros encontrados
+
+                    if (cantidad == 0) // Si no existe el material
+                    {
+                        MessageBox.Show("El material no existe en la base de datos.");
+                        return;
+                    }
+                }
+
+                // Actualizar la cantidad del material
+                using (SqlCommand comandoActualizar = new SqlCommand(queryActualizar, conexion.ObtenerConexion()))
+                {
+                    comandoActualizar.Parameters.AddWithValue("@isbn", isbn);
+
+                    int filasAfectadas = comandoActualizar.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Material actualizado con éxito. Cantidad disminuida correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo actualizar el material. Verifica la cantidad disponible.");
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                MessageBox.Show($"Error al consultar o actualizar el material: {ex.Message}");
+            }
+        }
+
+        public void Devolucion(int isbn)
+        {
+            // Verificar que el ISBN sea válido
+            if (isbn <= 0)
+            {
+                MessageBox.Show("Por favor, ingrese un ISBN válido.");
+                return;
+            }
+
+
+            string queryVerificar = "SELECT COUNT(*) FROM material WHERE iSBN = @isbn";
+
+
+            string queryActualizar = "UPDATE material SET CantidadActual = CantidadActual + 1 WHERE iSBN = @isbn AND CantidadActual > 0";
+
+            try
+            {
+
+
+                // Verificar si el material existe
+                using (SqlCommand comandoVerificar = new SqlCommand(queryVerificar, conexion.ObtenerConexion()))
+                {
+                    comandoVerificar.Parameters.AddWithValue("@isbn", isbn);
+
+                    conexion.AbrirConexion();
+                    int cantidad = (int)comandoVerificar.ExecuteScalar(); // Devuelve la cantidad de registros encontrados
+
+                    if (cantidad == 0) // Si no existe el material
+                    {
+                        MessageBox.Show("El material no existe en la base de datos.");
+                        return;
+                    }
+                }
+
+                // Actualizar la cantidad del material
+                using (SqlCommand comandoActualizar = new SqlCommand(queryActualizar, conexion.ObtenerConexion()))
+                {
+                    comandoActualizar.Parameters.AddWithValue("@isbn", isbn);
+
+                    int filasAfectadas = comandoActualizar.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                    {
+                        MessageBox.Show("Material actualizado con éxito. Cantidad aumentada correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo actualizar el material. Verifica la cantidad disponible.");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                // Manejo de errores
+                MessageBox.Show($"Error al consultar o actualizar el material: {ex.Message}");
+            }
+        }
+        public void ConsultarFilaPorISBN(int isbn)
+        {
+            string query = "SELECT * FROM material WHERE isbn = @isbn";
+
+            try
+            {
+                conexion.AbrirConexion();
+
+                using (SqlCommand command = new SqlCommand(query, conexion.ObtenerConexion()))
+                {
+                    command.Parameters.AddWithValue("@isbn", isbn);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            string nombre = reader["nombre"].ToString();
+                            string fechaCreacion = reader["fechaCreacion"].ToString();
+                            string cantidadRegistrada = reader["cantidadRegistrada"].ToString();
+                            string cantidadActual = reader["cantidadActual"].ToString();
+
+                            string resultado = $"ISBN: {isbn}\nNombre: {nombre}\nFecha Creación: {fechaCreacion}\nCantidad Registrada: {cantidadRegistrada}\nCantidad Actual: {cantidadActual}";
+                            MessageBox.Show(resultado, "Información del Material", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el material con el ISBN especificado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+
+                conexion.CerrarConexion();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al consultar la fila: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         // Incrementar Cantidad de Material
         public void incrementarCantidad(int isbn, int cantidad)
@@ -79,7 +236,7 @@ namespace finalHerramientas1
 
             // Guardar en la base de datos
             string query = $"INSERT INTO Persona (CC, Nombre, Rol, CantMaxPrestamo) " +
-                           $"VALUES ({nuevaPersona.Cc}, '{nuevaPersona.Nombre}', '{nuevaPersona.Roll}', {nuevaPersona.CantMaxPrestamo})";
+                           $"VALUES ({nuevaPersona.Cc}, '{nuevaPersona.Nombre}', '{nuevaPersona.Rol}', {nuevaPersona.CantMaxPrestamo})";
 
             conexion.EjecutarConsulta(query);
 
@@ -89,40 +246,41 @@ namespace finalHerramientas1
 
         public void eliminarPersona(int cc)
         {
-            // Primero verificamos si la persona existe utilizando consultaPersona
             persona per = consultaPersona(cc);
 
-            // Si la persona no existe, mostramos un mensaje y salimos del método
             if (per == null)
             {
                 MessageBox.Show("La persona no está registrada.");
                 return;
             }
 
-            // Verificamos si la persona tiene préstamos activos
             if (movimientos.Any(m => m.Persona.Cc == cc && m.TipoMovimiento == "Préstamo"))
             {
                 MessageBox.Show("No se puede eliminar una persona con préstamos activos.");
                 return;
             }
 
-            // Si no tiene préstamos activos, la eliminamos del registro en memoria
             registroPersonas.Remove(per);
 
-            // Eliminar la persona de la base de datos
-            string query = $"DELETE FROM Persona WHERE Cedula = {cc}";
+            string query = "DELETE FROM persona WHERE cc = @cc";
             try
             {
-                // Ejecutar la consulta SQL para eliminar la persona de la base de datos
-                conexion.EjecutarConsulta(query);
+                conexion.AbrirConexion();
+                SqlCommand cmd = new SqlCommand(query, conexion.ObtenerConexion());
+                cmd.Parameters.AddWithValue("@cc", cc);
+                cmd.ExecuteNonQuery();
                 MessageBox.Show("Persona eliminada con éxito.");
             }
             catch (Exception ex)
             {
-                // Manejar cualquier error de la base de datos
                 MessageBox.Show($"Error al eliminar la persona de la base de datos: {ex.Message}");
             }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
         }
+
 
 
         // Registrar Préstamo
@@ -219,128 +377,145 @@ namespace finalHerramientas1
             return historial;
         }
 
-public persona consultaPersona(int cc)
-{
-    // Definir la consulta SQL para obtener los datos de la persona usando parámetros
-    string query = "SELECT Nombre, Cedula, Rol, CantMaxPrestamo FROM Persona WHERE Cedula = @cc";
-
-    try
-    {
-        // Crear la conexión SQL
-        using (SqlConnection conexionSQL = new SqlConnection("your_connection_string_here"))
+        public persona consultaPersona(int cc)
         {
-            // Crear el comando SQL con el parámetro
-            SqlCommand cmd = new SqlCommand(query, conexionSQL);
-            cmd.Parameters.AddWithValue("@cc", cc); // Usamos el parámetro @cc
+            string query = "SELECT nombre, cc, rol, cantMaxPrestamo FROM persona WHERE cc = @cc";
 
-            // Abrir la conexión
-            conexionSQL.Open();
-
-            // Ejecutar la consulta y obtener el SqlDataReader
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            // Verificar si se ha encontrado una persona con esa cédula
-            if (reader.Read())
+            try
             {
-                // Crear una nueva instancia de Persona con los datos obtenidos
-                persona persona = new persona(
-                    reader["Nombre"].ToString(),
-                    Convert.ToInt32(reader["Cedula"]),
-                    reader["Rol"].ToString(),
-                    Convert.ToInt32(reader["CantMaxPrestamo"]) // Suponiendo que tienes este campo en la base de datos
-                );
+                conexion.AbrirConexion();
+                SqlCommand cmd = new SqlCommand(query, conexion.ObtenerConexion());
+                cmd.Parameters.AddWithValue("@cc", cc);
 
-                reader.Close();
-                return persona;
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    persona persona = new persona(
+                        reader["nombre"]?.ToString() ?? "Desconocido",
+                        Convert.ToInt32(reader["cc"]),
+                        reader["rol"]?.ToString() ?? "Sin rol",
+                        reader["cantMaxPrestamo"] != DBNull.Value
+                            ? Convert.ToInt32(reader["cantMaxPrestamo"])
+                            : 3
+                    );
+
+                    reader.Close();
+                    return persona;
+                }
+                else
+                {
+
+                    reader.Close();
+                    return null;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Si no se encuentra la persona
-                MessageBox.Show("La persona no se encontró en la base de datos.");
-                reader.Close(); // Cerramos el reader si no se encuentra la persona
+                MessageBox.Show($"Error al consultar la persona: {ex.Message}");
                 return null;
             }
+            finally
+            {
+                conexion.CerrarConexion();
+            }
         }
-    }
-    catch (Exception ex)
-    {
-        // Si ocurre un error al realizar la consulta
-        MessageBox.Show($"Error al consultar la persona: {ex.Message}");
-        return null;
-    }
-}
 
 
 
-    public class movimiento
-    {
-        private persona persona;
-        private material material;
-        private DateTime fechaMovimiento;
-        private string tipoMovimiento;
 
-        public movimiento(persona persona, material material, DateTime fechaMovimiento, string tipoMovimiento)
+
+        public class movimiento
         {
-            this.Persona = persona;
-            this.Material = material;
-            this.FechaMovimiento = fechaMovimiento;
-            this.TipoMovimiento = tipoMovimiento;
+            private persona persona;
+            private material material;
+            private DateTime fechaMovimiento;
+            private string tipoMovimiento;
+
+            public movimiento(persona persona, material material, DateTime fechaMovimiento, string tipoMovimiento)
+            {
+                this.Persona = persona;
+                this.Material = material;
+                this.FechaMovimiento = fechaMovimiento;
+                this.TipoMovimiento = tipoMovimiento;
+            }
+
+            public persona Persona { get => persona; set => persona = value; }
+            public material Material { get => material; set => material = value; }
+            public DateTime FechaMovimiento { get => fechaMovimiento; set => fechaMovimiento = value; }
+            public string TipoMovimiento { get => tipoMovimiento; set => tipoMovimiento = value; }
         }
 
-        public persona Persona { get => persona; set => persona = value; }
-        public material Material { get => material; set => material = value; }
-        public DateTime FechaMovimiento { get => fechaMovimiento; set => fechaMovimiento = value; }
-        public string TipoMovimiento { get => tipoMovimiento; set => tipoMovimiento = value; }
-    }
-
-    public class material
-    {
-        private int iSBN;
-        private string nombre;  
-        private DateTime fechaCreacion;
-        private int cantidadReg;
-        private int cantidadAct;
-
-        public material(int iSBN, string nombre, DateTime fechaCreacion, int cantidadReg, int cantidadAct)
+        public class material
         {
-            this.ISBN = iSBN;
-            this.Nombre = nombre;
-            this.FechaCreacion = fechaCreacion;
-            this.CantidadReg = cantidadReg;
-            this.CantidadAct = cantidadAct;
-        }
+            private int iSBN;
+            private string nombre;
+            private int cantidadReg;
+            private int cantidadAct;
+            private string tipo;
 
-        public int ISBN { get => iSBN; set => iSBN = value; }
-        public string Nombre { get => nombre; set => nombre = value; }
-        public DateTime FechaCreacion { get => fechaCreacion; set => fechaCreacion = value; }
-        public int CantidadReg { get => cantidadReg; set => cantidadReg = value; }
-        public int CantidadAct { get => cantidadAct; set => cantidadAct = value; }
+            public material(int iSBN, string nombre,  int cantidadReg, int cantidadAct, string tipo)
+            {
+                this.ISBN = iSBN;
+                this.Nombre = nombre;
+                
+                this.CantidadReg = cantidadReg;
+                this.CantidadAct = cantidadAct;
+                this.tipo = tipo;
+            }
 
+            public int ISBN { get => iSBN; set => iSBN = value; }
+            public string Nombre { get => nombre; set => nombre = value; }
         
-    }
+            public int CantidadReg { get => cantidadReg; set => cantidadReg = value; }
+            public int CantidadAct { get => cantidadAct; set => cantidadAct = value; }
 
-    public class persona
-    {
-        private string nombre;
-        private int cc;
-        private string roll;
-        private int cantMaxPrestamo;
-        
-        public persona(string nombre, int cc, string roll, int cantMaxPrestamo)
-        {
-            this.Nombre = nombre;
-            this.Cc = cc;
-            this.Roll = roll;
-            this.CantMaxPrestamo = cantMaxPrestamo;
+            public string Tipo { get => tipo; set => tipo = value; }
         }
 
-        public string Nombre { get => nombre; set => nombre = value; }
-        public int Cc { get => cc; set => cc = value; }
-        public string Roll { get => roll; set => roll = value; }
-       public int CantMaxPrestamo { get => cantMaxPrestamo; set => cantMaxPrestamo = value; }
+        public class persona
+        {
+            // Campos privados
+            private string nombre;
+            private int cc;
+            private string rol; // Corregido de "roll" a "rol"
+            private int cantMaxPrestamo;
+
+            // Constructor
+            public persona(string nombre, int cc, string rol, int cantMaxPrestamo)
+            {
+                this.Nombre = nombre;
+                this.Cc = cc;
+                this.Rol = rol; // Corregido
+                this.CantMaxPrestamo = cantMaxPrestamo;
+            }
+
+            // Propiedades públicas
+            public string Nombre
+            {
+                get => nombre;
+                set => nombre = value;
+            }
+            public int Cc
+            {
+                get => cc;
+                set => cc = value;
+            }
+            public string Rol // Corregido
+            {
+                get => rol;
+                set => rol = value;
+            }
+            public int CantMaxPrestamo
+            {
+                get => cantMaxPrestamo;
+                set => cantMaxPrestamo = value;
+            }
+        }
+
+
+
+
+
     }
-
-
-
-
 }

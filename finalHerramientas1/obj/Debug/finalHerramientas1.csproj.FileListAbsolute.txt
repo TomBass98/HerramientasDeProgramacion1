@@ -9,3 +9,5 @@ D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.c
 D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.exe
 D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.pdb
 D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.Personas.resources
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.RegistrarMaterial.resources
+D:\HerramientasDeProgramacion1\finalHerramientas1\obj\Debug\finalHerramientas1.Prestamos.resources

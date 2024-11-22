@@ -20,7 +20,7 @@ namespace finalHerramientas1
                 if (connection.State == System.Data.ConnectionState.Closed)
                 {
                     connection.Open();
-                    MessageBox.Show("Conexión abierta con éxito.");
+
                 }
             }
             catch (Exception ex)
@@ -73,13 +73,13 @@ namespace finalHerramientas1
             {
                 AbrirConexion();
                 SqlCommand command = new SqlCommand(consultaSQL, connection);
-                dataReader = command.ExecuteReader(); 
+                dataReader = command.ExecuteReader();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al ejecutar la consulta de lectura: " + ex.Message);
             }
-            return dataReader; 
+            return dataReader;
         }
 
         public SqlDataReader EjecutarConsultaReader(string query)
@@ -108,6 +108,4 @@ namespace finalHerramientas1
 
 
     }
-
-
 }

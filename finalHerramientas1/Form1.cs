@@ -21,7 +21,7 @@ namespace finalHerramientas1
         {
             
             InitializeComponent();
-            this.biblioteca = new biblioteca(new List<material>(), new List<persona>(), new List<movimiento>());
+            this.biblioteca = new biblioteca(new List<biblioteca.material>(), new List<biblioteca.persona>(), new List<biblioteca.movimiento>());
             this.conexion = new conexionSQLcs();
         }
 
@@ -48,6 +48,21 @@ namespace finalHerramientas1
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            RegistrarMaterial registrar = new RegistrarMaterial();
+            registrar.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Prestamos prestamo = new Prestamos();
+            prestamo.Show();
+            this.Hide();
+
         }
     }
 }

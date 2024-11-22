@@ -49,6 +49,7 @@
             this.txtNombre.Size = new System.Drawing.Size(100, 22);
             this.txtNombre.TabIndex = 5;
             this.txtNombre.Tag = "";
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // label1
             // 
@@ -151,6 +152,7 @@
             this.Controls.Add(this.txtNombre);
             this.Name = "Personas";
             this.Text = "Personas";
+            this.Load += new System.EventHandler(this.Personas_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
